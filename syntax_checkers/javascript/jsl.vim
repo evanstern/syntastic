@@ -19,7 +19,7 @@ endif
 
 function s:ConfFlag()
     if !empty(g:syntastic_javascript_jsl_conf)
-        return "-conf " . g:syntastic_javascript_jsl_conf
+        return "--conf " . g:syntastic_javascript_jsl_conf
     endif
 
     return ""
@@ -32,7 +32,7 @@ endfunction
 function! SyntaxCheckers_javascript_jsl_GetLocList()
     let makeprg = syntastic#makeprg#build({
                 \ 'exe': 'jsl',
-                \ 'args': s:ConfFlag() . " -nologo -nofilelisting -nosummary -nocontext -process",
+                \ 'args': s:ConfFlag() . " --nologo --nofilelisting --nosummary",
                 \ 'subchecker': 'jsl' })
     let errorformat='%W%f(%l): lint warning: %m,%-Z%p^,%W%f(%l): warning: %m,%-Z%p^,%E%f(%l): SyntaxError: %m,%-Z%p^,%-G'
     return SyntasticMake({ 'makeprg': makeprg, 'errorformat': errorformat })
